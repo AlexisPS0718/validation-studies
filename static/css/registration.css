@@ -1,0 +1,164 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91.5vh;
+}
+
+.login-form form {
+  display: flex;
+  background-color: var(--surface-color);
+  border: 1px solid var(--light-color);
+  border-radius: 15px;
+  width: 65rem;
+  height: 32rem;
+}
+
+.login-form h3 {
+  margin-bottom: 1rem;
+}
+
+.login-form p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.login-form label {
+  display: block;
+  font-size: 1rem;
+  color: var(--light-color);
+  margin-bottom: 0.5rem;
+}
+
+.login-form input,
+.login-form select {
+  background-color: var(--surface-color);
+  font-size: 1rem;
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  width: 20rem;
+}
+
+.login-form select {
+  margin-bottom: 0;
+  width: 21rem;
+}
+
+.login-form small {
+  display: block;
+  color: var(--light-color);
+  margin-top: 0.4rem;
+}
+
+.login-form a {
+  color: var(--primary-color);
+}
+
+.login-form a:hover {
+  color: var(--primary-color-hover);
+}
+
+.login-form li,
+.login-form div {
+  color: var(--light-color);
+}
+
+.login-form .primary-button,
+.simple-div .primary-button {
+  display: block;
+  background-color: var(--primary-color);
+  font-size: 1rem;
+  border-radius: 15px;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+}
+
+.login-form .primary-button:hover,
+.simple-div .primary-button:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-hover);
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 3rem;
+  width: 50%;
+}
+
+.form-img {
+  background-image: url('../img/placeholder-tall.png');
+  background-size: cover;
+  border-radius: 0 15px 15px 0;
+  width: 50%;
+}
+
+#id_password,
+#id_password2 {
+  margin-bottom: 0.5rem;
+}
+
+.signup-form form {
+  width: 72rem;
+  height: 34rem;
+}
+
+.signup-2 {
+  margin-top: 1.5rem;
+}
+
+.signup-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 2rem;
+  padding-bottom: 3rem;
+}
+
+.helptext {
+  margin-bottom: 0.7rem;
+}
+
+.small-form form,
+.big-form form {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.small-form form {
+  width: 50rem;
+  height: 20rem;
+}
+
+.small-form .new-password {
+  width: 50rem;
+  height: 26rem;
+}
+
+.small-form .primary-button {
+  margin-top: 0;
+}
+
+.simple-div {
+  margin-top: 2rem;
+}
+
+.simple-div h3 {
+  margin-bottom: 0.5rem;
+}
+
+.simple-div p {
+  margin-bottom: 0.2rem;
+}
+
+.big-form form {
+  width: 65rem;
+  height: 32rem;
+}

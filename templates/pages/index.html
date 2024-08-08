@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome{% endblock title %}
+
+{% block content %}
+<div class="welcome-user">
+  <h2>Welcome to <br class="welcome-space"> Validation of Studies</h2>
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, consequuntur.</p>
+  <p>Hello, {{ user.username }}</p>
+  <p>Your role is: {{ user.role }}</p>
+</div>
+<form action="" class="search-container">
+  <input type="search" name="" id="" placeholder="Search">
+  <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+<div class="cards-container">
+  <a href="#" class="student-card">
+    <img src="{% static 'img/placeholder.png' %}" alt="">
+    <h3>Student name</h3>
+    <p>University of origin</p>
+    <p>Carreer name</p>
+    <p>Date of creation</p>
+  </a>
+  <a href="#" class="student-card">
+    <img src="{% static 'img/placeholder.png' %}" alt="">
+    <h3>Student name</h3>
+    <p>University of origin</p>
+    <p>Carreer name</p>
+    <p>Date of creation</p>
+  </a>
+  <a href="#" class="student-card">
+    <img src="{% static 'img/placeholder.png' %}" alt="">
+    <h3>Student name</h3>
+    <p>University of origin</p>
+    <p>Carreer name</p>
+    <p>Date of creation</p>
+  </a>
+  <a href="#" class="student-card">
+    <img src="{% static 'img/placeholder.png' %}" alt="">
+    <h3>Student name</h3>
+    <p>University of origin</p>
+    <p>Carreer name</p>
+    <p>Date of creation</p>
+  </a>
+</div>
+{% endblock content %}

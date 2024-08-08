@@ -1,0 +1,68 @@
+{% extends 'registration.html' %}
+
+{% block title %}Sign up{% endblock title %}
+
+{% block content %}
+<div class="login-form signup-form">
+  <form method="POST" class="signup-inputs">
+    <div class="singup-1">
+      <div>
+        <h3>Sign up</h3>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+      {% csrf_token %}
+      <div>
+        <label for="id_username">Username:</label>
+        <div class="helptext" id="id_username_helptext">
+          Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        </div>
+        <input type="text" name="username" maxlength="150" autofocus="" required=""
+          aria-describedby="id_username_helptext" id="id_username" placeholder="Enter your username">
+      </div>
+      <div>
+        <label for="id_first_name">First name:</label>
+        <input type="text" name="first_name" maxlength="150" id="id_first_name" placeholder="Enter your first name">
+      </div>
+      <div>
+        <label for="id_last_name">Last name:</label>
+        <input type="text" name="last_name" maxlength="150" id="id_last_name" placeholder="Enter your last name">
+      </div>
+      <div>
+        <label for="id_email">Email address:</label>
+        <input type="email" name="email" maxlength="254" id="id_email" placeholder="Enter your email">
+      </div>
+      <div>
+        <label for="id_role">Role:</label>
+        {{ form.role }}
+      </div>
+    </div>
+
+    <div class="signup-2">
+      <div>
+        <label for="id_password1">Password:</label>
+        <div class="helptext" id="id_password1_helptext">
+          <ul>
+            <li>Your password can’t be too similar to your other personal information.</li>
+            <li>Your password must contain at least 8 characters.</li>
+            <li>Your password can’t be a commonly used password.</li>
+            <li>Your password can’t be entirely numeric.</li>
+          </ul>
+        </div>
+        <input type="password" name="password1" autocomplete="new-password" required=""
+          aria-describedby="id_password1_helptext" id="id_password1" aria-autocomplete="list"
+          placeholder="Enter your password">
+      </div>
+      <div>
+        <label for="id_password2">Password confirmation:</label>
+        <div class="helptext" id="id_password2_helptext">Enter the same password as before, for verification.</div>
+        <input type="password" name="password2" autocomplete="new-password" required=""
+          aria-describedby="id_password2_helptext" id="id_password2" placeholder="Re-enter your password">
+      </div>
+      <small>Alredy have an account?
+        <a href="{% url 'login' %}">Log in</a>
+      </small>
+      <input class="primary-button" type="submit" value="Create account">
+    </div>
+  </form>
+</div>
+{% endblock content %}

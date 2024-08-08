@@ -1,0 +1,25 @@
+{% extends 'registration.html' %}
+{% load static %}
+
+{% block title %}Log in{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST">
+    <div class="login-inputs">
+      <h3>Log in</h3>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      {% csrf_token %}
+      {{ form.as_div }}
+      <small>Forgot your password?
+        <a href="{% url 'password_reset' %}">Change it</a>
+      </small>
+      <small>Don't have an account?
+        <a href="{% url 'signup' %}">Create account</a>
+      </small>
+      <input class="primary-button" type="submit" value="Log in">
+    </div>
+    <div class="form-img"></div>
+  </form>
+</div>
+{% endblock content %}

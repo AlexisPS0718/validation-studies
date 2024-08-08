@@ -1,0 +1,111 @@
+.welcome-user {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.welcome-user h2 {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.welcome-user p {
+  font-size: 1.5rem;
+}
+
+.welcome-space {
+  display: none;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.search-container input,
+.search-container button {
+  font-size: 1rem;
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
+}
+
+.search-container input {
+  background-color: var(--background-color);
+  border-radius: 10px 0 0 10px;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  width: 30%;
+}
+
+.search-container button {
+  background-color: var(--primary-color);
+  border-radius: 0 10px 10px 0;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+}
+
+.search-container button:hover {
+  background-color: var(--primary-color-hover);
+  cursor: pointer;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1.2rem;
+  justify-items: center;
+}
+
+.student-card {
+  display: block;
+  border: 1px solid var(--background-color);
+  padding: 0.8rem;
+  width: 18vw;
+}
+
+.student-card img {
+  width: 100%;
+}
+
+.student-card:hover {
+  background-color: var(--background-color-hover);
+  border: 1px solid var(--light-color);
+  border-radius: 10px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 640px) {
+  .welcome-user h2 {
+    font-size: 2.5rem;
+  }
+
+  .welcome-space {
+    display: block;
+  }
+
+  .search-container input {
+    width: 70%;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 1rem;
+  }
+
+  .student-card {
+    display: block;
+    border: 1px solid var(--background-color);
+    padding: 0.8rem;
+    width: 80%;
+  }
+
+  .student-card img {
+    width: 100%;
+  }
+
+  .student-card:hover {
+    background-color: var(--background-color-hover);
+    border: 1px solid var(--light-color);
+    border-radius: 10px;
+  }
+}
