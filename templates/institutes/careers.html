@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Careers{% endblock title %}
+
+{% block content %}
+<h2 class="main-title"><a href="{% url 'institutes' %}">Institutes</a><span> > {{ institute.name }} > Careers</span>
+</h2>
+<div class="institutes-header">
+  <form action="" class="search-container search-small">
+    <input type="search" name="" id="" placeholder="Search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <a href="{% url 'new-career' %}"><i class="fa-solid fa-circle-plus"></i> Add career</a>
+</div>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Engineering</th>
+    <th>Actions</th>
+  </tr>
+  {% for career in careers %}
+  <tr>
+    <td><a href="#" class="table-link">{{ career.name }}</a></td>
+    <td>{{ career.is_engineering }}</td>
+    <td><a href="{% url 'edit-career' career.id %}"><i class="fa-solid fa-pen edit"></i></a><a
+        href="{% url 'delete-career' career.id %}"><i class="fa-solid fa-trash delete"></i></a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock content %}

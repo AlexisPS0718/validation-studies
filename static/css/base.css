@@ -84,6 +84,35 @@ a {
   text-decoration: none;
 }
 
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: var(--light-color);
+  margin-top: 1rem;
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 0.7rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.500);
+}
+
+table th {
+  background-color: rgba(0, 72, 159, 0.800);
+  font-size: 1.1rem;
+}
+
+table td {
+  background-color: rgba(28, 26, 38, 0.800);
+  font-size: 1rem;
+}
+
+table i {
+  color: var(--light-color);
+}
+
 ::-moz-selection {
   color: var(--dark-color);
   background: var(--special-element);
@@ -117,6 +146,29 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+input[type="checkbox"] {
+  max-width: fit-content;
+}
+
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-title {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.main-title a {
+  color: var(--light-color);
+}
+
+.main-title span {
+  font-size: 2rem;
+}
+
 .primary-button {
   background-color: var(--primary-color);
   font-size: 1.25rem;
@@ -127,13 +179,72 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .primary-button:hover {
+  cursor: pointer;
   background-color: var(--primary-color-hover);
 }
 
-.container {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+.secondary-button {
+  background-color: var(--secondary-color-2);
+  font-size: 1.2rem;
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 15px;
+  padding: 0.8rem;
+}
+
+.secondary-button:hover {
+  cursor: pointer;
+  background-color: rgba(233, 65, 35, 0.800);
+}
+
+.small-form-div {
+  height: 85vh !important;
+}
+
+.small-form {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-color);
+  padding: 3rem;
+  width: auto !important;
+  height: auto !important;
+}
+
+.small-form h2 {
+  margin-bottom: 1rem;
+}
+
+.small-form select {
+  margin-bottom: 1.5rem !important;
+}
+
+.small-form input {
+  text-align: left !important;
+}
+
+.edit {
+  color: var(--secondary-color);
+  margin-right: 2rem;
+}
+
+.edit:hover {
+  color: rgba(39, 169, 225, 0.800);
+}
+
+.delete {
+  color: var(--secondary-color-2);
+}
+
+.delete:hover {
+  color: rgba(233, 65, 35, 0.800);
+}
+
+.table-link {
+  color: var(--light-color);
+}
+
+.table-link:hover {
+  border-bottom: 1px solid var(--light-color);
 }
 
 /* RESPONSIVE */

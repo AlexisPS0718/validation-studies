@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Students{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Students</h2>
+<div class="institutes-header">
+  <form action="" class="search-container search-small">
+    <input type="search" name="" id="" placeholder="Search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <a href="{% url 'new' %}"><i class="fa-solid fa-circle-plus"></i> Add student</a>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>First name</th>
+      <th>Paternal surname</th>
+      <th>Maternal surname</th>
+      <th>Institution</th>
+      <th>Career</th>
+      <th>Actions</th>
+    </tr>
+    {% for student in students_list %}
+    <tr>
+      <td><a href="#" class="table-link">{{ student.first_name }}</a></td>
+      <td>{{ student.paternal_surname }}</td>
+      <td>{{ student.maternal_surname }}</td>
+      <td>{{ student.institution }}</td>
+      <td>{{ student.career }}</td>
+      <td><a href="#"><i class="fa-solid fa-pen edit"></i></a><a href="#"><i class="fa-solid fa-trash delete"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

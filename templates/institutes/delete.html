@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete institute{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete institute</h2>
+<p>Are you sure you want to delete <b>{{ institute.name }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Name:</p>
+    <h4>{{ institute.name }}</h4>
+    <p>State and municipality:</p>
+    <h4>{{ institute.republic_state }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete institute">
+</form>
+{% endblock content %}

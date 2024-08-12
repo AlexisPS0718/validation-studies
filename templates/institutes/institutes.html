@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Institutes{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Institutes</h2>
+<div class="institutes-header">
+  <form action="" class="search-container search-small">
+    <input type="search" name="" id="" placeholder="Search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <a href="{% url 'new' %}"><i class="fa-solid fa-circle-plus"></i> Add institute</a>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>State and municipality</th>
+      <th>Actions</th>
+    </tr>
+    {% for institute in institute_list %}
+    <tr>
+      <td><a href="{% url 'careers' institute.id %}" class="table-link">{{ institute.name }}</a></td>
+      <td>{{ institute.republic_state }}</td>
+      <td><a href="{% url 'edit' institute.id %}"><i class="fa-solid fa-pen edit"></i></a><a
+          href="{% url 'delete' institute.id %}"><i class="fa-solid fa-trash delete"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

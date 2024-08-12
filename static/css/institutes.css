@@ -1,0 +1,48 @@
+.search-small {
+  justify-content: flex-start;
+}
+
+.search-small input {
+  width: 100%;
+}
+
+.institutes-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.institutes-header a {
+  display: flex;
+  align-items: center;
+  color: var(--light-color);
+  margin-top: 0.7rem;
+}
+
+.institutes-header a i {
+  background-color: var(--light-color);
+  border-radius: 20px;
+  padding: 0.12rem;
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-right: 0.8rem;
+}
+
+.institutes-header a i:hover {
+  color: var(--primary-color-hover)
+}
+
+.delete-card {
+  background-color: var(--dark-color);
+  border: 1px solid var(--light-color);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.delete-card h4 {
+  margin-bottom: 1rem;
+}
+
+.delete-card h4:last-of-type {
+  margin-bottom: 0;
+}
