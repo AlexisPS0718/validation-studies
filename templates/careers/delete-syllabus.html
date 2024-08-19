@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete syllabus{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete syllabus</h2>
+<p>Are you sure you want to delete the syllabus of <b>{{ syllabus.career.name }}</b> in <b>
+    {{ syllabus.career.institute.name }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Institute:</p>
+    <h4>{{ syllabus.career.institute.name }}</h4>
+    <p>Career:</p>
+    <h4>{{ syllabus.career.name }}</h4>
+    <p>Key:</p>
+    <h4>{{ syllabus.key }}</h4>
+    <p>Start date:</p>
+    <h4>{{ syllabus.start_date }}</h4>
+    <p>End date:</p>
+    <h4>{{ syllabus.final_date }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete syllabus">
+</form>
+{% endblock content %}

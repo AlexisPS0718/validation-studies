@@ -1,15 +1,14 @@
 from django.views.generic import (
-  TemplateView,
   ListView,
   CreateView,
-  DetailView,
   UpdateView,
   DeleteView
 )
-from django.contrib.auth.mixins import (
-  LoginRequiredMixin,
-  UserPassesTestMixin
-)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.shortcuts import render
+from institutes.models import Career
+from .forms import StudentForm
 from .models import Student
 
 class StudentListView(LoginRequiredMixin, ListView):
@@ -27,4 +26,19 @@ class StudentListView(LoginRequiredMixin, ListView):
 class StudentCreateView(LoginRequiredMixin, CreateView):
   template_name = "students/new.html"
   model = Student
-  fields = ["institution", "career", "first_name", "paternal_surname", "maternal_surname", "street_and_number", "neighborhood", "zip_code", "municipality", "city", "state", "nationality", "sex", "level", "area"]
+  form_class = StudentForm
+
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
+  template_name = "students/edit.html"
+  model = Student
+  form_class = StudentForm
+
+def load_careers(request):
+  institute_id = request.GET.get('institute')
+  careers = Career.objects.filter(institute_id=institute_id).order_by('name')
+  return render(request, 'hr/career_dropdown_list_options.html', {'careers': careers})
+
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
+  template_name = "students/delete.html"
+  model = Student
+  success_url = reverse_lazy("students")

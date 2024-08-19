@@ -4,7 +4,8 @@
 
 {% block content %}
 <h2 class="main-title">Delete institute</h2>
-<p>Are you sure you want to delete <b>{{ institute.name }}</b>?</p>
+<p class="mb-05">Are you sure you want to delete <b>{{ institute.name }}</b>?</p>
+<p>All related elements will be removed: classes and syllabi</p>
 <br>
 <div class="delete-card">
   <div>
@@ -15,7 +16,7 @@
   </div>
 </div>
 <br>
-<form method="POST">
+<form method="POST" class="delete-form">
   {% csrf_token %}
   <input class="secondary-button" type="submit" value="Delete institute">
 </form>

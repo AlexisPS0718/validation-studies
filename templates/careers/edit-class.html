@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit class{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form">
+    <h2>Edit class</h2>
+    {% csrf_token %}
+    <div>
+      <label for="id_career">Career:</label>
+      <select name="career" required id="id_career" multiple>
+        {% for career in career_list %}
+        {% if main_subject in career.subject_set.all %}
+        <option value="{{ career.id }}" selected>{{ career.name }}</option>
+        {% endif %}
+        {% endfor %}
+        <option value="{{ main_career.id }}" selected>{{ main_career.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="id_key">Key:</label>
+      {{ form.key }}
+    </div>
+    <div>
+      <label for="id_name">Name:</label>
+      {{ form.name }}
+    </div>
+    <input class="primary-button" type="submit" value="Edit class">
+  </form>
+</div>
+
+</div>
+{% endblock content %}

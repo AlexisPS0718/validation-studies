@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete class{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete class</h2>
+<p>Are you sure you want to delete the class of <b>{{ subject.name }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Key:</p>
+    <h4>{{ subject.key }}</h4>
+    <p>Name:</p>
+    <h4>{{ subject.name }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form subject">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete class">
+</form>
+{% endblock content %}

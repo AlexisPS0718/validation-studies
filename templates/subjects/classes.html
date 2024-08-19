@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Classes{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Classes</h2>
+<div class="institutes-header">
+  <form action="" class="search-container search-small">
+    <input type="search" name="" id="" placeholder="Search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <a href="{% url 'new-class' %}"><i class="fa-solid fa-circle-plus"></i> Add class</a>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Key</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    {% for subject in subject_list %}
+    <tr>
+      <td>{{ subject.key }}</td>
+      <td>{{ subject.name }}</td>
+      <td class="actions">
+        <div><a href="{% url 'edit-class' subject.id %}"><i class="fa-solid fa-pen edit"></i></a></div>
+        <div><a href="{% url 'delete-class' subject.id %}"><i class="fa-solid fa-trash delete"></i></a></div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

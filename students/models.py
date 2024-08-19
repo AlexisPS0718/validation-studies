@@ -6,7 +6,7 @@ from institutes.models import (
 )
 
 class Student(models.Model):
-  institution = models.ForeignKey(
+  institute = models.ForeignKey(
     Institute,
     on_delete=models.CASCADE,
     blank=True, null=True
@@ -24,7 +24,8 @@ class Student(models.Model):
   zip_code = models.IntegerField()
   municipality = models.CharField(max_length=128)
   city = models.CharField(max_length=128)
-  state = models.IntegerField()
+  state = models.CharField(max_length=128)
+  phone_number = models.IntegerField()
   nationality = models.CharField(max_length=128)
   sex = models.CharField(max_length=1)
   level = models.CharField(max_length=128)

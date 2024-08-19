@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete student{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete student</h2>
+<p>Are you sure you want to delete <b>{{ student.first_name }} {{ student.paternal_surname }}
+    {{ student.maternal_surname }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div class="first-half">
+    <p>Institute:</p>
+    <h4>{{ student.institute }}</h4>
+    <p>Career:</p>
+    <h4>{{ student.career }}</h4>
+    <p>First name:</p>
+    <h4>{{ student.first_name }}</h4>
+    <p>Paternal surname:</p>
+    <h4>{{ student.paternal_surname }}</h4>
+    <p>Maternal surname:</p>
+    <h4>{{ student.maternal_surname }}</h4>
+    <p>Street and number:</p>
+    <h4>{{ student.street_and_number }}</h4>
+    <p>Neighborhood:</p>
+    <h4>{{ student.neighborhood }}</h4>
+    <p>Zip code:</p>
+    <h4>{{ student.zip_code }}</h4>
+  </div>
+  <div class="second-half">
+    <p>Municipality:</p>
+    <h4>{{ student.municipality }}</h4>
+    <p>City:</p>
+    <h4>{{ student.city }}</h4>
+    <p>State:</p>
+    <h4>{{ student.state }}</h4>
+    <p>Phone number:</p>
+    <h4>{{ student.phone_number }}</h4>
+    <p>Nationality:</p>
+    <h4>{{ student.nationality }}</h4>
+    <p>Sex:</p>
+    <h4>{{ student.sex }}</h4>
+    <p>Level:</p>
+    <h4>{{ student.level }}</h4>
+    <p>Area:</p>
+    <h4>{{ student.area }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete student">
+</form>
+{% endblock content %}

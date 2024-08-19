@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit student{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+  <form method="POST" id="studentForm" data-careers-url="{% url 'ajax_load_careers' %}" novalidate class="big-form">
+    {% csrf_token %}
+    <div class="first-half">
+      <h3>Edit student</h3>
+      <p>The following data can be edited.</p>
+      <div>
+        <label for="id_institute">Institute:</label>
+        {{ form.institute }}
+      </div>
+      <div>
+        <label for="id_career">Career:</label>
+        {{ form.career }}
+      </div>
+      <div>
+        <label for="id_first_name">First name:</label>
+        {{ form.first_name }}
+      </div>
+      <div>
+        <label for="id_paternal_surname">Paternal surname:</label>
+        {{ form.paternal_surname }}
+      </div>
+      <div>
+        <label for="id_maternal_surname">Maternal surname:</label>
+        {{ form.maternal_surname }}
+      </div>
+      <div>
+        <label for="id_street_and_number">Street and number:</label>
+        {{ form.street_and_number }}
+      </div>
+      <div>
+        <label for="id_neighborhood">Neighborhood:</label>
+        {{ form.neighborhood }}
+      </div>
+      <div>
+        <label for="id_zip_code">Zip code:</label>
+        {{ form.zip_code }}
+      </div>
+      <input class="primary-button" type="submit" value="Edit student">
+    </div>
+    <div class="second-half">
+      <div>
+        <label for="id_municipality">Municipality:</label>
+        {{ form.municipality }}
+      </div>
+      <div>
+        <label for="id_city">City:</label>
+        {{ form.city }}
+      </div>
+      <div>
+        <label for="id_state">State:</label>
+        {{ form.state }}
+      </div>
+      <div>
+        <label for="id_phone_number">Phone number:</label>
+        {{ form.phone_number }}
+      </div>
+      <div>
+        <label for="id_nationality">Nationality:</label>
+        {{ form.nationality }}
+      </div>
+      <div>
+        <label for="id_sex">Sex:</label>
+        {{ form.sex }}
+      </div>
+      <div>
+        <label for="id_level">Level:</label>
+        {{ form.level }}
+      </div>
+      <div>
+        <label for="id_area">Area:</label>
+        {{ form.area }}
+      </div>
+    </div>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_institute").change(function () {
+      var url = $("#studentForm").attr("data-careers-url");
+      var instituteId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'institute': instituteId
+        },
+        success: function (data) {
+          $("#id_career").html(data);
+        }
+      });
+    });
+  </script>
+</div>
+{% endblock content %}

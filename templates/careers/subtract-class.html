@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Subtract class{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Subtract class</h2>
+<p>Are you sure you want to subtract the class of <b>{{ main_subject.name }}</b> in <b>
+    {{ main_career.name }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Key:</p>
+    <h4>{{ main_subject.key }}</h4>
+    <p>Name:</p>
+    <h4>{{ main_subject.name }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form subject">
+  {% csrf_token %}
+  <select name="career" required id="id_career" multiple hidden>
+    {% for institute in institute_list %}
+    {% for career in institute.career_set.all %}
+    {% if career.name == main_career.name and institute.name == main_career.institute.name %}
+    <option value="{{ career.id }}">{{ career.name }} - {{ institute.name }}</option>
+    {% else %}
+    {% if main_subject in career.subject_set.all %}
+    <option value="{{ career.id }}" selected>{{ career.name }} - {{ institute.name }}</option>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </select>
+  {{ form.name }}
+  {{ form.key }}
+  <input class="secondary-button" type="submit" value="Subtract class">
+</form>
+{% endblock content %}

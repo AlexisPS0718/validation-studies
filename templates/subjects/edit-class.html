@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit class{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form new-class-form">
+    <h2>Edit class</h2>
+    <p>The following data can be edited.</p>
+    {% csrf_token %}
+    <div>
+      <label for="id_career">Career:</label>
+      <select name="career" required id="id_career" multiple>
+        {% for institute in institute_list %}
+        {% for career in institute.career_set.all %}
+        {% if main_subject in career.subject_set.all %}
+        <option value="{{ career.id }}" selected>{{ career.institute.name }} - {{ career.name }}</option>
+        {% else %}
+        <option value="{{ career.id }}">{{ career.institute.name }} - {{ career.name }}</option>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_key">Key:</label>
+      {{ form.key }}
+    </div>
+    <div>
+      <label for="id_name">Name:</label>
+      {{ form.name }}
+    </div>
+    <input class="primary-button" type="submit" value="Edit class">
+  </form>
+</div>
+{% endblock content %}

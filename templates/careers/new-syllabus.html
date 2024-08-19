@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}New syllabus{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form">
+    <h2>New syllabus</h2>
+    <p>Enter the following data to add a new syllabus.</p>
+    {% csrf_token %}
+    <div class="display-none">
+      <label for="id_career">Career:</label>
+      <select name="career" id="id_career">
+        <option value="{{ career.id }}" selected>{{ career.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="id_key">Key:</label>
+      <input type="text" name="key" maxlength="128" required="" id="id_key"
+        placeholder="Enter the key for the syllabus">
+    </div>
+    <div>
+      <label for="id_start_date">Start date:</label>
+      <input type="date" name="start_date" required="" id="id_start_date">
+    </div>
+    <div>
+      <label for="id_final_date">Final date:</label>
+      <input type="date" name="final_date" required="" id="id_final_date">
+    </div>
+    <input class="primary-button" type="submit" value="Create new syllabus">
+  </form>
+</div>
+{% endblock content %}

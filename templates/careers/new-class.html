@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block title %}New class{% endblock title %}
+
+{% block content %}
+<div class="new-class-container">
+  <div class="login-form small-form-div class-form">
+    <form method="POST" class="small-form">
+      <h2>New class</h2>
+      <p>Create a new class or add an existing class.</p>
+      {% csrf_token %}
+      <div class="display-none">
+        <label for="id_career">Career:</label>
+        <select name="career" required id="id_career">
+          <option value="{{ main_career.id }}" selected>{{ main_career.syllabus.key }} - {{ main_career.name }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="id_key">Key:</label>
+        <input type="text" name="key" maxlength="128" required="" id="id_key" placeholder="Enter the key for the class">
+      </div>
+      <div>
+        <label for="id_name">Name:</label>
+        <input type="text" name="name" maxlength="128" required="" id="id_name"
+          placeholder="Enter the name of the class">
+      </div>
+      <input class="primary-button" type="submit" value="Create new class">
+    </form>
+  </div>
+
+  <div class="classes-container">
+    <h2>Add an existing class</h2>
+    <div class="grid">
+      {% for career in career_list %}
+      {% if career.name != main_career.name %}
+      <div>
+        <h4>{{ career.name }}</h4>
+        {% for subject in career.subject_set.all %}
+        {% if subject in main_career.subject_set.all %}
+        {% else %}
+        <a href="{% url 'add-class' pk1=main_career.id pk=subject.id %}">
+          <p>{{ subject.key }} - {{ subject.name }}</p>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div>
+        <h4>Lorem ipsum dolor sit.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

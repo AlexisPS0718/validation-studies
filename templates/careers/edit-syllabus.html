@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit syllabus{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form">
+    <h2>Edit syllabus</h2>
+    <p>The following data can be edited.</p>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <div class="flex-gap-1">
+      <input class="primary-button" type="submit" value="Edit syllabus">
+      <a href="{% url 'delete-syllabus' syllabus.career.id %}" class="secondary-button">Delete syllabus</a>
+    </div>
+  </form>
+</div>
+{% endblock content %}

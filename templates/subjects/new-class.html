@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}New class{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form new-class-form">
+    <h2>New class</h2>
+    <p>Enter the following data to add a new class.</p>
+    {% csrf_token %}
+    <div>
+      <label for="id_career">Career:</label>
+      <select name="career" required="" id="id_career" multiple="">
+        {% for career in career_list %}
+        <option value="{{ career.id }}">{{ career.name }} - {{ career.institute.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_key">Key:</label>
+      <input type="text" name="key" maxlength="128" required="" id="id_key" placeholder="Enter the key for the class">
+    </div>
+    <div>
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" maxlength="128" required="" id="id_name" placeholder="Enter the name of the class">
+    </div>
+    <input class="primary-button" type="submit" value="Create new class">
+  </form>
+</div>
+{% endblock content %}

@@ -12,7 +12,7 @@ class Institute(models.Model):
     return reverse("institutes")
 
 class Career(models.Model):
-  institution = models.ForeignKey(
+  institute = models.ForeignKey(
     Institute,
     on_delete=models.CASCADE,
     blank=True, null=True
@@ -24,13 +24,14 @@ class Career(models.Model):
     return self.name
 
   def get_absolute_url(self):
-    return reverse("careers", args=[self.institution.id])
+    return reverse("careers", args=[self.institute.id])
 
 class Syllabus(models.Model):
-  career = models.ForeignKey(
+  career = models.OneToOneField(
     Career,
     on_delete=models.CASCADE,
-    blank=True, null=True
+    primary_key=True,
+    related_name="syllabus"
   )
   key = models.CharField(max_length=128)
   start_date = models.DateField()
@@ -39,8 +40,11 @@ class Syllabus(models.Model):
   def __str__(self):
     return self.career.name
 
+  def get_absolute_url(self):
+    return reverse("syllabus", args=[self.career.id])
+
 class Subject(models.Model):
-  syllabus = models.ManyToManyField(Syllabus, related_name="syllabus")
+  career = models.ManyToManyField(Career)
   key = models.CharField(max_length=128)
   name = models.CharField(max_length=128)
 

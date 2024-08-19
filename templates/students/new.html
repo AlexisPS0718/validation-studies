@@ -1,14 +1,107 @@
 {% extends 'base.html' %}
 
-{% block title %}New item{% endblock title %}
+{% block title %}New student{% endblock title %}
 
 {% block content %}
-<div>
-  <form method="POST">
-    <h2>New item</h2>
+<div class="form-container">
+  <form method="POST" id="studentForm" data-careers-url="{% url 'ajax_load_careers' %}" novalidate class="big-form">
     {% csrf_token %}
-    {{ form.as_div }}
-    <input class="primary-button" type="submit" value="Create new item">
+    <div class="first-half">
+      <h3>New student</h3>
+      <p>Enter the following data to add a new student.</p>
+      <div>
+        <label for="id_institute">Institute:</label>
+        {{ form.institute }}
+      </div>
+      <div>
+        <label for="id_career">Career:</label>
+        {{ form.career }}
+      </div>
+      <div>
+        <label for="id_first_name">First name:</label>
+        <input type="text" name="first_name" maxlength="128" required="" id="id_first_name"
+          placeholder="Enter the first name">
+      </div>
+      <div>
+        <label for="id_paternal_surname">Paternal surname:</label>
+        <input type="text" name="paternal_surname" maxlength="128" required="" id="id_paternal_surname"
+          placeholder="Enter the paternal surname">
+      </div>
+      <div>
+        <label for="id_maternal_surname">Maternal surname:</label>
+        <input type="text" name="maternal_surname" maxlength="128" required="" id="id_maternal_surname"
+          placeholder="Enter the maternal surname">
+      </div>
+      <div>
+        <label for="id_street_and_number">Street and number:</label>
+        <input type="text" name="street_and_number" maxlength="256" required="" id="id_street_and_number"
+          placeholder="Example: Río Verde 4067">
+      </div>
+      <div>
+        <label for="id_neighborhood">Neighborhood:</label>
+        <input type="text" name="neighborhood" maxlength="256" required="" id="id_neighborhood"
+          placeholder="Enter the neighborhood name">
+      </div>
+      <div>
+        <label for="id_zip_code">Zip code:</label>
+        <input type="number" name="zip_code" required="" id="id_zip_code" placeholder="Enter the zip code">
+      </div>
+      <input class="primary-button" type="submit" value="Add new student">
+    </div>
+    <div class="second-half">
+      <div>
+        <label for="id_municipality">Municipality:</label>
+        <input type="text" name="municipality" maxlength="128" required="" id="id_municipality"
+          placeholder="Enter the municipality name">
+      </div>
+      <div>
+        <label for="id_city">City:</label>
+        <input type="text" name="city" maxlength="128" required="" id="id_city" placeholder="Enter the city name">
+      </div>
+      <div>
+        <label for="id_state">State:</label>
+        <input type="text" name="state" maxlength="128" required="" id="id_state" placeholder="Enter the state name">
+      </div>
+      <div>
+        <label for="id_phone_number">Phone number:</label>
+        <input type="number" name="phone_number" required="" id="id_phone_number" placeholder="Example: (999) 999-9999">
+      </div>
+      <div>
+        <label for="id_nationality">Nationality:</label>
+        <input type="text" name="nationality" maxlength="128" required="" id="id_nationality"
+          placeholder="Enter the nacionality">
+      </div>
+      <div>
+        <label for="id_sex">Sex:</label>
+        <input type="text" name="sex" maxlength="1" required="" id="id_sex" placeholder="M / F">
+      </div>
+      <div>
+        <label for="id_level">Level:</label>
+        <input type="text" name="level" maxlength="128" required="" id="id_level"
+          placeholder="Bachelor's degree or TSU">
+      </div>
+      <div>
+        <label for="id_area">Area:</label>
+        <input type="text" name="area" maxlength="128" required="" id="id_area"
+          placeholder="Engineering, economic-administrative, etc.">
+      </div>
+    </div>
   </form>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_institute").change(function () {
+      var url = $("#studentForm").attr("data-careers-url");
+      var instituteId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'institute': instituteId
+        },
+        success: function (data) {
+          $("#id_career").html(data);
+        }
+      });
+    });
+  </script>
 </div>
 {% endblock content %}

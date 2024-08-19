@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}New item{% endblock title %}
+{% block title %}New institute{% endblock title %}
 
 {% block content %}
 <div class="login-form small-form-div">
   <form method="POST" class="small-form">
-    <h2>New item</h2>
+    <h2>New institute</h2>
+    <p>Enter the following data to add a new institute.</p>
     {% csrf_token %}
-    {{ form.as_div }}
-    <input class="primary-button" type="submit" value="Create new item">
+    <div>
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" maxlength="128" required="" id="id_name"
+        placeholder="Enter the name of the institute">
+    </div>
+    <div>
+      <label for="id_republic_state">State and municipality:</label>
+      <input type="text" name="republic_state" maxlength="128" required="" id="id_republic_state"
+        placeholder="Example: Mexicali, Baja California">
+    </div>
+    <input class="primary-button" type="submit" value="Create new institute">
   </form>
 </div>
 {% endblock content %}

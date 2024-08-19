@@ -1,18 +1,16 @@
 from django.views.generic import (
-  TemplateView,
   ListView,
   CreateView,
-  DetailView,
   UpdateView,
   DeleteView
 )
-from django.contrib.auth.mixins import (
-  LoginRequiredMixin,
-  UserPassesTestMixin
-)
-from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
-from .models import Institute, Career
+from django.urls import reverse_lazy
+from .models import (
+  Institute,
+  Career
+)
 
 class InstituteListView(LoginRequiredMixin, ListView):
   template_name = "institutes/institutes.html"
@@ -54,20 +52,27 @@ class CareerListView(LoginRequiredMixin, ListView):
     return context
 
 class CareerCreateView(LoginRequiredMixin, CreateView):
-  template_name = "institutes/new.html"
+  template_name = "institutes/new-career.html"
   model = Career
-  fields = ["institution", "name", "is_engineering"]
+  fields = ["institute", "name", "is_engineering"]
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    institute = get_object_or_404(Institute, pk=pk)
+    context["institute"] = institute
+    return context
 
 class CareerUpdateView(LoginRequiredMixin, UpdateView):
-  template_name = "institutes/edit.html"
+  template_name = "institutes/edit-career.html"
   model = Career
-  fields = ["institution", "name", "is_engineering"]
+  fields = ["institute", "name", "is_engineering"]
 
 class CareerDeleteView(LoginRequiredMixin, DeleteView):
   template_name = "institutes/delete-career.html"
   model = Career
-  
+
   def get_success_url(self):
     career = self.get_object()
-    institute_id = career.institution.id
+    institute_id = career.institute.id
     return reverse_lazy("careers", args=[institute_id])

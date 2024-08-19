@@ -15,7 +15,7 @@ def populate_roles(apps, schemaeditor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0002_auto_20240803_0100'),
+        ('accounts', '0001_initial'),
     ]
 
     operations = [

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}New career{% endblock title %}
+
+{% block content %}
+<div class="login-form small-form-div">
+  <form method="POST" class="small-form">
+    <h2>New career</h2>
+    <p>Enter the following data to add a new career.</p>
+    {% csrf_token %}
+    <div class="display-none">
+      <label for="id_institute">Institute:</label>
+      <select name="institute" id="id_institute">
+        <option value="{{ institute.id }}" selected>{{ institute.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" maxlength="128" required="" id="id_name"
+        placeholder="Enter the name of the career">
+    </div>
+    <div>
+      <label for="id_is_engineering">Is engineering:</label>
+      <input type="checkbox" name="is_engineering" value="0" id="id_is_engineering" checked="">
+    </div>
+    <input class="primary-button" type="submit" value="Create new career">
+  </form>
+</div>
+{% endblock content %}

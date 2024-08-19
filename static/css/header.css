@@ -52,11 +52,14 @@ nav a {
   justify-content: space-between;
   background-color: var(--primary-color);
   padding: 1rem 0;
+  height: 4vh;
 }
 
 .user-icon {
+  background-color: var(--primary-color);
   text-align: right;
   margin-right: 2rem;
+  border: 0;
 }
 
 .user-icon i {
@@ -74,11 +77,11 @@ nav a {
   cursor: pointer;
 }
 
-#cb-ham {
+.ham-btn {
   display: none;
 }
 
-.ham-btn {
+#cb-ham {
   display: none;
 }
 

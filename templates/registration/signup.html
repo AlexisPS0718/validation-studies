@@ -8,7 +8,7 @@
     <div class="singup-1">
       <div>
         <h3>Sign up</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <p>Create a new account by filling out the following fields.</p>
       </div>
       {% csrf_token %}
       <div>
@@ -31,9 +31,18 @@
         <label for="id_email">Email address:</label>
         <input type="email" name="email" maxlength="254" id="id_email" placeholder="Enter your email">
       </div>
-      <div>
+      <div style="display: none;">
         <label for="id_role">Role:</label>
-        {{ form.role }}
+        <select name="role" id="id_role">
+          <option value="" selected="">---------</option>
+          {% for role in role_list %}
+          {% if role.id == 1 %}
+          <option value="{{ role.id }}" selected>{{ role.name }}</option>
+          {% else %}
+          <option value="{{ role.id }}">{{ role.name }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
       </div>
     </div>
 

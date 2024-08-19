@@ -2,15 +2,15 @@ from django.db import models
 from django.core.validators import (
   MinValueValidator,
   MaxValueValidator
-  )
+)
 from students.models import Student
 from institutes.models import *
 
 class Analysis(models.Model):
-  student = models.ForeignKey(
+  student = models.OneToOneField(
     Student,
     on_delete=models.CASCADE,
-    blank=True, null=True
+    primary_key=True
   )
   origin_syllabus = models.ForeignKey(
     Syllabus,
@@ -29,10 +29,10 @@ class Analysis(models.Model):
   created_at = models.DateField()
 
 class Request(models.Model):
-  student = models.ForeignKey(
+  student = models.OneToOneField(
     Student,
     on_delete=models.CASCADE,
-    blank=True, null=True
+    primary_key=True
   )
   to_institute = models.ForeignKey(
     Institute,
@@ -47,7 +47,7 @@ class Request(models.Model):
   created_at = models.DateField()
 
 class Equivalence(models.Model):
-  equivalence = models.ManyToManyField(Analysis, related_name="analysis")
+  student = models.ManyToManyField(Student)
   origin_subject = models.ForeignKey(
     Subject,
     on_delete=models.SET_NULL,

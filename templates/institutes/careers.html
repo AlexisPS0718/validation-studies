@@ -3,14 +3,14 @@
 {% block title %}Careers{% endblock title %}
 
 {% block content %}
-<h2 class="main-title"><a href="{% url 'institutes' %}">Institutes</a><span> > {{ institute.name }} > Careers</span>
+<h2 class="main-title"><a href="{% url 'institutes' %}">Institutes</a><span> > {{ institute.name }}</span>
 </h2>
 <div class="institutes-header">
   <form action="" class="search-container search-small">
     <input type="search" name="" id="" placeholder="Search">
     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
-  <a href="{% url 'new-career' %}"><i class="fa-solid fa-circle-plus"></i> Add career</a>
+  <a href="{% url 'new-career' institute.id %}"><i class="fa-solid fa-circle-plus"></i> Add career</a>
 </div>
 <table>
   <tr>
@@ -20,10 +20,17 @@
   </tr>
   {% for career in careers %}
   <tr>
-    <td><a href="#" class="table-link">{{ career.name }}</a></td>
+    <td><a href="{% url 'syllabus' career.id %}" class="table-link">{{ career.name }}</a></td>
     <td>{{ career.is_engineering }}</td>
-    <td><a href="{% url 'edit-career' career.id %}"><i class="fa-solid fa-pen edit"></i></a><a
-        href="{% url 'delete-career' career.id %}"><i class="fa-solid fa-trash delete"></i></a>
+    <td class="actions">
+      <div><a href="{% url 'edit-career' career.id %}"><i class="fa-solid fa-pen edit"></i></a></div>
+      <div><a href="{% url 'delete-career' career.id %}"><i class="fa-solid fa-trash delete"></i></a>
+      </div>
+      {% if career.id == career.syllabus.career.id %}
+      <div><a href="{% url 'edit-syllabus' career.id %}"><i class="fa-solid fa-file-pen edit-s"></i></a></div>
+      {% else %}
+      <div><a href="{% url 'new-syllabus' career.id %}"><i class="fa-solid fa-book-medical add"></i></a></div>
+      {% endif %}
     </td>
   </tr>
   {% endfor %}
