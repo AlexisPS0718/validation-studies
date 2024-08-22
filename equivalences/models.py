@@ -44,7 +44,10 @@ class Request(models.Model):
     on_delete=models.CASCADE,
     blank=True, null=True
   )
-  created_at = models.DateField()
+  created_at = models.DateField(auto_now_add=True)
+
+  def __str__(self):
+    return f"{self.student.first_name} {self.student.paternal_surname} {self.student.maternal_surname} - {self.student.institute.name}"
 
 class Equivalence(models.Model):
   student = models.ManyToManyField(Student)

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit request{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST" id="requestForm" data-careers-url="{% url 'ajax_load_request_careers' %}" novalidate
+    class="small-form">
+    {% csrf_token %}
+    <div class="first-half">
+      <h3>Edit request</h3>
+      <p>The following data can be edited.</p>
+      <div class="display-none">
+        <label for="id_student">Student:</label>
+        {{ form.student }}
+      </div>
+      <div>
+        <label for="id_to_institute">To institute:</label>
+        {{ form.to_institute }}
+      </div>
+      <div>
+        <label for="id_to_career">To career:</label>
+        {{ form.to_career }}
+      </div>
+      <div class="flex-gap-1">
+        <input class="primary-button" type="submit" value="Edit request">
+        <a href="{% url 'delete-request' request.student.id %}" class="secondary-button">Delete request</a>
+      </div>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#id_to_institute").change(function () {
+    var url = $("#requestForm").attr("data-careers-url");
+    var instituteId = $(this).val();
+    $.ajax({
+      url: url,
+      data: {
+        'to_institute': instituteId
+      },
+      success: function (data) {
+        $("#id_to_career").html(data);
+      }
+    });
+  });
+</script>
+{% endblock content %}

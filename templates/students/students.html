@@ -28,6 +28,11 @@
       <td class="actions">
         <div><a href="{% url 'edit-student' student.id %}"><i class="fa-solid fa-pen edit"></i></a></div>
         <div><a href="{% url 'delete-student' student.id %}"><i class="fa-solid fa-trash delete"></i></a></div>
+        {% if student.id == student.request.student.id %}
+        <div><a href="{% url 'edit-request' student.id %}"><i class="fa-solid fa-file-pen edit-s"></i></a></div>
+        {% else %}
+        <div><a href="{% url 'new-request' student.id %}"><i class="fa-solid fa-book-medical add"></i></a></div>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}

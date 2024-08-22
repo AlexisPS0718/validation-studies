@@ -305,10 +305,15 @@ input[type="checkbox"]:checked::before {
   gap: 2rem;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: stretch;
   row-gap: 1.5rem;
 }
 
@@ -360,6 +365,10 @@ input[type="checkbox"]:checked::before {
 
 .small-form select {
   margin-bottom: 1.5rem !important;
+}
+
+.small-form-div {
+  height: 92vh !important;
 }
 
 .big-form {

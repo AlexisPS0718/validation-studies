@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete request{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete request</h2>
+<p>Are you sure you want to delete the request from <b>{{ request.student.first_name }}
+    {{ request.student.paternal_surname }} {{ request.student.maternal_surname }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Student:</p>
+    <h4>{{ request.student.first_name }} {{ request.student.paternal_surname }} {{ request.student.maternal_surname }}
+    </h4>
+    <p>To institute:</p>
+    <h4>{{ request.to_institute }}</h4>
+    <p>To career:</p>
+    <h4>{{ request.to_career }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete request">
+</form>
+{% endblock content %}

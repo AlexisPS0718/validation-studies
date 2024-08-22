@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Create request{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Create request</h2>
+<p>Do you want to create a request with the following information?</p>
+<br>
+<div class="delete-card">
+  <div class="first-half">
+    <p>Institute:</p>
+    <h4>{{ student.institute }}</h4>
+    <p>Career:</p>
+    <h4>{{ student.career }}</h4>
+    <p>First name:</p>
+    <h4>{{ student.first_name }}</h4>
+    <p>Paternal surname:</p>
+    <h4>{{ student.paternal_surname }}</h4>
+    <p>Maternal surname:</p>
+    <h4>{{ student.maternal_surname }}</h4>
+    <p>Street and number:</p>
+    <h4>{{ student.street_and_number }}</h4>
+    <p>Neighborhood:</p>
+    <h4>{{ student.neighborhood }}</h4>
+    <p>Zip code:</p>
+    <h4>{{ student.zip_code }}</h4>
+  </div>
+  <div class="second-half">
+    <p>Municipality:</p>
+    <h4>{{ student.municipality }}</h4>
+    <p>City:</p>
+    <h4>{{ student.city }}</h4>
+    <p>State:</p>
+    <h4>{{ student.state }}</h4>
+    <p>Phone number:</p>
+    <h4>{{ student.phone_number }}</h4>
+    <p>Nationality:</p>
+    <h4>{{ student.nationality }}</h4>
+    <p>Sex:</p>
+    <h4>{{ student.sex }}</h4>
+    <p>Level:</p>
+    <h4>{{ student.level }}</h4>
+    <p>Area:</p>
+    <h4>{{ student.area }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" id="requestForm" data-careers-url="{% url 'ajax_load_request_careers' %}" novalidate
+  class="request-form">
+  {% csrf_token %}
+  <div class="flex-row">
+    <select name="student" required="" id="id_student" hidden>
+      <option value="{{ student.id }}" selected>{{ student.first_name }} {{ student.paternal_surname }}
+        {{ student.maternal_surname }}</option>
+    </select>
+    <div>
+      <label for="id_to_institute">To institute:</label>
+      {{ form.to_institute }}
+    </div>
+    <div>
+      <label for="id_to_career">To career:</label>
+      {{ form.to_career }}
+    </div>
+  </div>
+  <div>
+    <input class="primary-button" type="submit" value="Create request">
+  </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#id_to_institute").change(function () {
+    var url = $("#requestForm").attr("data-careers-url");
+    var instituteId = $(this).val();
+    $.ajax({
+      url: url,
+      data: {
+        'to_institute': instituteId
+      },
+      success: function (data) {
+        $("#id_to_career").html(data);
+      }
+    });
+  });
+</script>
+{% endblock content %}
