@@ -11,4 +11,5 @@ urlpatterns = [
   path('ajax/load-request-careers/', views.load_request_careers, name='ajax_load_request_careers'),
   path("<int:pk>/edit-request/", views.RequestUpdateView.as_view(), name="edit-request"),
   path("<int:pk>/delete-request/", views.RequestDeleteView.as_view(), name="delete-request"),
+  path("<int:pk>/request/", views.RequestView.as_view(), name="request"),
 ]

@@ -1,4 +1,5 @@
 from django.views.generic import (
+  TemplateView,
   ListView,
   CreateView,
   UpdateView,
@@ -78,3 +79,14 @@ class RequestDeleteView(LoginRequiredMixin, DeleteView):
   template_name = "students/delete-request.html"
   model = Request
   success_url = reverse_lazy("students")
+
+class RequestView(LoginRequiredMixin, TemplateView):
+  template_name = "students/request.html"
+  model = Student
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    student = get_object_or_404(Student, pk=pk)
+    context["student"] = student
+    return context

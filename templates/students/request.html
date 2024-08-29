@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Request{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Request for Resolution of Equivalence of Studies</h2>
+<br>
+<div class="delete-card">
+  <div class="first-half">
+    <p>Date:</p>
+    <h4>{{ student.request.created_at }}</h4>
+    <p>Name:</p>
+    <h4>{{ student.paternal_surname }} {{ student.maternal_surname }} {{ student.first_name }}</h4>
+    <div class="address-container">
+      <p>Address:</p>
+      <h4>{{ student.street_and_number }}</h4>
+      <h4>{{ student.neighborhood }}</h4>
+      <h4>{{ student.zip_code }}</h4>
+      <h4>{{ student.municipality }}</h4>
+      <h4>{{ student.city }}</h4>
+      <h4>{{ student.state }}</h4>
+      <h4>{{ student.phone_number }}</h4>
+    </div>
+    <p>Nationality:</p>
+    <h4>{{ student.nationality }}</h4>
+    <p>Sex:</p>
+    <h4>{{ student.sex }}</h4>
+    <p>Institution where the student carries out his/her studies:</p>
+    <h4>{{ student.institute }}</h4>
+    <p>Level:</p>
+    <h4>{{ student.level }}</h4>
+    <p>Area:</p>
+    <h4>{{ student.area }}</h4>
+  </div>
+  <div class="second-half">
+    <p>State of the republic:</p>
+    <h4>{{ student.institute.republic_state }}</h4>
+    <p>Career:</p>
+    <h4>{{ student.career }}</h4>
+    <p>Syllabus key:</p>
+    <h4>{{ student.career.syllabus.key }}</h4>
+    <p>Start date:</p>
+    <h4>{{ student.career.syllabus.start_date }}</h4>
+    <p>Final date:</p>
+    <h4>{{ student.career.syllabus.final_date }}</h4>
+    <p>Institute to enter:</p>
+    <h4>{{ student.request.to_institute }}</h4>
+    <p>State of republic:</p>
+    <h4>{{ student.request.to_institute.republic_state }}</h4>
+    {% if student.request.to_career.is_engineering == True %}
+    <p>Engineering:</p>
+    <h4>{{ student.request.to_career }}</h4>
+    {% else %}
+    <p>Degree:</p>
+    <h4>{{ student.request.to_career }}</h4>
+    {% endif %}
+    <p>Syllabus key:</p>
+    <h4>{{ student.request.to_career.syllabus.key }}</h4>
+  </div>
+</div>
+<div class="request-btn-container">
+  <a href="#" class="primary-button">Send by email</a>
+</div>
+{% endblock content %}

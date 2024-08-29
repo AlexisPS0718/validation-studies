@@ -119,7 +119,6 @@
 }
 
 .request-form {
-  /* align-items: flex-end; */
   flex-direction: column;
   background-color: var(--background-color);
   border: 0;
@@ -129,7 +128,37 @@
   margin-right: 2rem;
 }
 
-.request-form .primary-button {
-  /* margin-top: 0 !important; */
-  /* height: fit-content; */
+.address-container p {
+  margin-top: 1rem;
+}
+
+.address-container h4 {
+  margin-bottom: 0.2rem;
+}
+
+.address-container h4:last-child {
+  margin-bottom: 1rem;
+}
+
+.request-btn-container {
+  margin-top: 2rem;
+}
+
+.request-btn-container a {
+  border: 1px solid var(--light-color);
+  border-radius: 15px;
+  font-size: 1.2rem;
+}
+
+.equivalence-btn {
+  border: 2px solid var(--light-color);
+  border-radius: 100%;
+  padding: 0.1rem 0.4rem;
+  color: var(--light-color);
+  font-weight: bold;
+}
+
+.equivalence-btn:hover {
+  color: var(--gray-color);
+  border-color: var(--gray-color);
 }

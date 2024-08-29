@@ -32,7 +32,8 @@ class Request(models.Model):
   student = models.OneToOneField(
     Student,
     on_delete=models.CASCADE,
-    primary_key=True
+    primary_key=True,
+    related_name="request"
   )
   to_institute = models.ForeignKey(
     Institute,
