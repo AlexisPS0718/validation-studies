@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete equivalence{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete equivalence</h2>
+<p>Are you sure you want to delete the equivalence of <b>{{ equivalence.origin_subject }} -
+    {{ equivalence.receiver_subject }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Origin subject:</p>
+    <h4>{{ equivalence.origin_subject }}</h4>
+    <p>Origin institute:</p>
+    <h4>{{ analysis.origin_syllabus.career.institute.name }}</h4>
+    <p>Receiver subject:</p>
+    <h4>{{ equivalence.receiver_subject }}</h4>
+    <p>Receiver institute:</p>
+    <h4>{{ analysis.receiver_syllabus.career.institute.name }}</h4>
+    <p>Percentage:</p>
+    <h4>{{ equivalence.percentage }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete equivalence">
+</form>
+{% endblock content %}

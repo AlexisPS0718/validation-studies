@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete analysis{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete analysis</h2>
+<p>Are you sure you want to delete the analysis of <b>{{ analysis.origin_syllabus }} -
+    {{ analysis.origin_syllabus.career.institute }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Origin syllabus:</p>
+    <h4>{{ analysis.origin_syllabus }}</h4>
+    <p>Origin institute:</p>
+    <h4>{{ analysis.origin_syllabus.career.institute }}</h4>
+    <p>Receiver syllabus:</p>
+    <h4>{{ analysis.receiver_syllabus }}</h4>
+    <p>Receiver institute:</p>
+    <h4>{{ analysis.receiver_syllabus.career.institute }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete analysis">
+</form>
+{% endblock content %}

@@ -6,6 +6,7 @@
 <div class="login-form">
   <form method="POST" class="small-form">
     <h2>Edit class</h2>
+    <p>The following data can be edited.</p>
     {% csrf_token %}
     <div>
       <label for="id_career">Career:</label>
@@ -28,7 +29,5 @@
     </div>
     <input class="primary-button" type="submit" value="Edit class">
   </form>
-</div>
-
 </div>
 {% endblock content %}

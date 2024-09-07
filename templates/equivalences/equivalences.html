@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Equivalences{% endblock title %}
+
+{% block content %}
+<h2 class="main-title"><a href="{% url 'analysis' %}">Analysis</a><span> >
+    {{ analysis.origin_syllabus.career.name }} - {{ analysis.origin_syllabus.career.institute.name }}</span>
+</h2>
+<div class="syllabus-grid">
+  <p><b>Origin syllabus:</b> {{ analysis.origin_syllabus }}</p>
+  <p><b>Receiver syllabus:</b> {{ analysis.receiver_syllabus }}</p>
+  <p><b>Origin institute:</b> {{ analysis.origin_syllabus.career.institute.name }}</p>
+  <p><b>Receiver institute:</b> {{ analysis.receiver_syllabus.career.institute.name }}</p>
+</div>
+<div class="institutes-header">
+  <form action="" class="search-container search-small">
+    <input type="search" name="" id="" placeholder="Search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <a href="{% url 'new-equivalence' analysis.id %}"><i class="fa-solid fa-circle-plus"></i> Add equivalence</a>
+</div>
+<div>
+  <p>Classes left:</p>
+  {% for subject in origin_subject_list %}
+  {% if subject.id not in equivalence_origin_list %}
+  <span class="white">| {{ subject.name }} | </span>
+  {% endif %}
+  {% endfor %}
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Origin class</th>
+      <th>Receiver class</th>
+      <th>Class key</th>
+      <th>Percentage</th>
+      <th>Actions</th>
+    </tr>
+    {% for equivalence in equivalence_list %}
+    <tr>
+      <td>{{ equivalence.origin_subject }}</td>
+      {% if equivalence.receiver_subject == None %}
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+      {% else %}
+      <td>{{ equivalence.receiver_subject }}</td>
+      <td>{{ equivalence.receiver_subject.key }}</td>
+      <td>{{ equivalence.percentage }}</td>
+      {% endif %}
+      <td class="actions">
+        <div><a href="{% url 'edit-equivalence' pk1=analysis.id  pk=equivalence.id %}"><i
+              class="fa-solid fa-pen edit"></i></a></div>
+        <div><a href="{% url 'delete-equivalence' pk1=analysis.id  pk=equivalence.id %}"><i
+              class="fa-solid fa-trash delete"></i></a></div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

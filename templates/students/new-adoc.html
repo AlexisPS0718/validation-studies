@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}New analysis{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST" class="small-form">
+    <h2>New analysis</h2>
+    <p>Enter the following data to create a new analysis.</p>
+    {% csrf_token %}
+    <div class="display-none">
+      <label for="id_student">Student:</label>
+      <select name="student" required="" id="id_student">
+        <option value="{{ student.id }}" selected>{{ student.first_name }} {{ student.paternal_surname }}
+          {{ student.maternal_surname }}</option>
+      </select>
+    </div>
+    <div class="analysis-div">
+      <label for="id_analysis">Analysis:</label>
+      <select name="analysis" required="" id="id_analysis">
+        <option disabled selected>No analysis found for this career</option>
+        {% for analysis in analysis_list %}
+        {% if analysis.origin_syllabus == student.career.syllabus and analysis.receiver_syllabus == student.request.to_career.syllabus %}
+        <option value="{{ analysis.id }}" selected>{{ analysis }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+      <small>No analysis found? <a href="{% url 'new-analysis' %}">Create a new analysis</a></small>
+    </div>
+    <div>
+      <label for="id_academy_president">Academy president:</label>
+      <input type="text" name="academy_president" maxlength="256" required="" id="id_academy_president" placeholder="Enter the Academy President full name">
+    </div>
+    <div>
+      <label for="id_department_head">Department head:</label>
+      <input type="text" name="department_head" maxlength="256" required="" id="id_department_head" placeholder="Enter the Department Head full name">
+    </div>
+    <input class="primary-button" type="submit" value="Create new analysis">
+  </form>
+</div>
+{% endblock content %}

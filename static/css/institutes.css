@@ -6,13 +6,15 @@
   width: 100%;
 }
 
-.institutes-header {
+.institutes-header,
+.actions-div {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.institutes-header a {
+.institutes-header a,
+.actions-div a {
   display: flex;
   align-items: center;
   color: var(--light-color);
@@ -28,8 +30,23 @@
   margin-right: 0.8rem;
 }
 
-.institutes-header a i:hover {
+.institutes-header a i:hover,
+.actions-div a i:hover {
   color: var(--primary-color-hover)
+}
+
+.actions-div i {
+  background-color: var(--light-color);
+  border-radius: 100%;
+  padding: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.circle-icon {
+  padding-left: 0.6rem !important;
+  padding-right: 0.6rem !important;
 }
 
 .delete-card {
@@ -161,4 +178,17 @@
 .equivalence-btn:hover {
   color: var(--gray-color);
   border-color: var(--gray-color);
+}
+
+.syllabus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 35rem);
+}
+
+.analysis-div select {
+  margin-bottom: 0.3rem !important;
+}
+
+.analysis-div small {
+  margin-bottom: 1.5rem;
 }

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Analysis{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Academic Analysis of Equivalency Resolution of Studies</h2>
+<div class="flex-gap-2">
+  <p><b>Date:</b> {{ student.analysis.created_at }}</p>
+  <p><b>Student:</b> {{ student.paternal_surname }} {{ student.maternal_surname }} {{ student.first_name }}</p>
+</div>
+<br>
+<div class="syllabus-grid">
+  <p><b>Origin syllabus:</b> {{ student.analysis.analysis.origin_syllabus }}</p>
+  <p><b>Receiver syllabus:</b> {{ student.analysis.analysis.receiver_syllabus }}</p>
+  <p><b>Origin institute:</b> {{ student.analysis.analysis.origin_syllabus.career.institute.name }}</p>
+  <p><b>Receiver institute:</b> {{ student.analysis.analysis.receiver_syllabus.career.institute.name }}</p>
+</div>
+<br>
+<div class="flex-gap-2">
+  <p><b>Academy president:</b> {{ student.analysis.academy_president }}</p>
+  <p><b>Department head:</b> {{ student.analysis.department_head }}</p>
+</div>
+<div class="actions-div">
+  <a href="{% url 'equivalences' student.analysis.analysis.id %}"><i class="fa-solid fa-arrow-right circle-icon"></i> Go to analysis</a>
+  <a href="{% url 'edit-doc-analysis' student.id %}"><i class="fa-solid fa-pen"></i> Edit analysis</a>
+  <a href="{% url 'delete-doc-analysis' student.id %}"><i class="fa-solid fa-trash circle-icon"></i> Delete analysis</a>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Origin class</th>
+      <th>Receiver class</th>
+      <th>Class key</th>
+      <th>Percentage</th>
+      <th>Actions</th>
+    </tr>
+    {% for equivalence in equivalence_list %}
+    <tr>
+      <td>{{ equivalence.origin_subject }}</td>
+      {% if equivalence.receiver_subject == None %}
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+      {% else %}
+      <td>{{ equivalence.receiver_subject }}</td>
+      <td>{{ equivalence.receiver_subject.key }}</td>
+      <td>{{ equivalence.percentage }}</td>
+      {% endif %}
+      <td class="actions">
+        <div><a href="{% url 'edit-equivalence' pk1=student.analysis.analysis.id  pk=equivalence.id %}"><i class="fa-solid fa-pen edit"></i></a></div>
+        <div><a href="{% url 'delete-equivalence' pk1=student.analysis.analysis.id  pk=equivalence.id %}"><i class="fa-solid fa-trash delete"></i></a></div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

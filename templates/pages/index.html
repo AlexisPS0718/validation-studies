@@ -6,7 +6,8 @@
 {% block content %}
 <div class="welcome-user">
   <h2>Welcome to <br class="welcome-space"> Validation of Studies</h2>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, consequuntur.</p>
+  <p>Keep track of students, institutes, classes and perform study equivalencies efficiently.</p>
+  <br>
   <p>Hello, {{ user.username }}</p>
   <p>Your role is: {{ user.role }}</p>
 </div>
@@ -15,33 +16,13 @@
   <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 </form>
 <div class="cards-container">
-  <a href="#" class="student-card">
-    <img src="{% static 'img/placeholder.png' %}" alt="">
-    <h3>Student name</h3>
-    <p>University of origin</p>
-    <p>Carreer name</p>
-    <p>Date of creation</p>
+  {% for student in student_list %}
+  <a href="{% url 'request' student.id %}" class="student-card">
+    <h3>{{ student.first_name }} {{ student.paternal_surname }} {{ student.maternal_surname }}</h3>
+    <p>{{ student.institute }}</p>
+    <p>{{ student.career }}</p>
+    <p>{{ student.created_at }}</p>
   </a>
-  <a href="#" class="student-card">
-    <img src="{% static 'img/placeholder.png' %}" alt="">
-    <h3>Student name</h3>
-    <p>University of origin</p>
-    <p>Carreer name</p>
-    <p>Date of creation</p>
-  </a>
-  <a href="#" class="student-card">
-    <img src="{% static 'img/placeholder.png' %}" alt="">
-    <h3>Student name</h3>
-    <p>University of origin</p>
-    <p>Carreer name</p>
-    <p>Date of creation</p>
-  </a>
-  <a href="#" class="student-card">
-    <img src="{% static 'img/placeholder.png' %}" alt="">
-    <h3>Student name</h3>
-    <p>University of origin</p>
-    <p>Carreer name</p>
-    <p>Date of creation</p>
-  </a>
+  {% endfor %}
 </div>
 {% endblock content %}

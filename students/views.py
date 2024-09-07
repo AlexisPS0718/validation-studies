@@ -1,5 +1,6 @@
 from django.views.generic import (
   TemplateView,
+  DetailView,
   ListView,
   CreateView,
   UpdateView,
@@ -12,7 +13,11 @@ from django.shortcuts import (
   render
 )
 from institutes.models import Career
-from equivalences.models import Request
+from equivalences.models import (
+  Request,
+  Analysis,
+  DocAnalysis
+)
 from .forms import (
   StudentForm,
   RequestForm
@@ -55,7 +60,6 @@ class RequestCreateView(LoginRequiredMixin, CreateView):
   template_name = "students/new-request.html"
   model = Request
   form_class = RequestForm
-  success_url = reverse_lazy("students") # Change this to Student Detail View
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -73,7 +77,6 @@ class RequestUpdateView(LoginRequiredMixin, UpdateView):
   template_name = "students/edit-request.html"
   model = Request
   form_class = RequestForm
-  success_url = reverse_lazy("students")
 
 class RequestDeleteView(LoginRequiredMixin, DeleteView):
   template_name = "students/delete-request.html"
@@ -89,4 +92,61 @@ class RequestView(LoginRequiredMixin, TemplateView):
     pk = self.kwargs.get('pk')
     student = get_object_or_404(Student, pk=pk)
     context["student"] = student
+    return context
+
+class AnalysisCreateView(LoginRequiredMixin, CreateView):
+  template_name = "students/new-adoc.html"
+  model = DocAnalysis
+  fields = ["student", "analysis", "academy_president", "department_head"]
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    student = get_object_or_404(Student, pk=pk)
+    context["student"] = student
+    context["analysis_list"] = (
+      Analysis.objects
+      .order_by("origin_syllabus")
+    )
+    return context
+
+class AnalysisDetailView(LoginRequiredMixin, DetailView):
+  template_name = "students/adoc.html"
+  model = DocAnalysis
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    student = get_object_or_404(Student, pk=pk)
+    context["student"] = student
+    context["equivalence_list"] = student.analysis.analysis.equivalence_set.all().order_by('origin_subject')
+    return context
+
+class AnalysisUpdateView(LoginRequiredMixin, UpdateView):
+  template_name = "students/edit-adoc.html"
+  model = DocAnalysis
+  fields = ["academy_president", "department_head"]
+
+class AnalysisDeleteView(LoginRequiredMixin, DeleteView):
+  template_name = "students/delete-adoc.html"
+  model = DocAnalysis
+  success_url = reverse_lazy("students")
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    student = get_object_or_404(Student, pk=pk)
+    context["student"] = student
+    context["equivalence_list"] = student.analysis.analysis.equivalence_set.all().order_by('origin_subject')
+    return context
+
+class DictumDetailView(LoginRequiredMixin, TemplateView):
+  template_name = "students/dictum.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pk = self.kwargs.get('pk')
+    student = get_object_or_404(Student, pk=pk)
+    context["student"] = student
+    context["equivalence_list"] = student.analysis.analysis.equivalence_set.all().order_by('origin_subject')
     return context

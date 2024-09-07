@@ -258,6 +258,10 @@ input[type="checkbox"]:checked::before {
   margin-bottom: 0.5rem;
 }
 
+.white {
+  color: var(--light-color);
+}
+
 .display-none {
   display: none;
 }

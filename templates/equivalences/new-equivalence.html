@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}New equivalence{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST" class="small-form">
+    <h2>New equivalence</h2>
+    <p>Enter the following data to add a new equivalence.</p>
+    {% csrf_token %}
+    <div class="display-none">
+      <label for="id_analysis">Analysis:</label>
+      <select name="analysis" id="id_analysis">
+        <option value="{{ analysis.id }}" selected>{{ analysis.origin_syllabus }} -
+          {{ analysis.origin_syllabus.career.institute.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="id_origin_subject">Origin subject:</label>
+      <select name="origin_subject" required="" id="id_origin_subject">
+        <option value="" selected="">---------</option>
+        {% for subject in origin_subject_list %}
+        <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_receiver_subject">Receiver subject:</label>
+      <select name="receiver_subject" id="id_receiver_subject">
+        <option value="" selected="">---------</option>
+        {% for subject in receiver_subject_list %}
+        <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_percentage">Percentage:</label>
+      <input type="number" name="percentage" value="0" required="" id="id_percentage">
+    </div>
+    <input class="primary-button" type="submit" value="Create new equivalence">
+  </form>
+</div>
+{% endblock content %}

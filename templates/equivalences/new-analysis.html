@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}New analysis{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST" class="small-form">
+    <h2>New analysis</h2>
+    <p>Enter the following data to create a new analysis.</p>
+    {% csrf_token %}
+    <div>
+      <label for="id_origin_syllabus">Origin syllabus:</label>
+      <select name="origin_syllabus" required="" id="id_origin_syllabus">
+        <option value="" selected="">---------</option>
+        {% for syllabus in syllabus_list %}
+        <option value="{{ syllabus.career.id }}">{{ syllabus.career.name }} - {{ syllabus.career.institute.name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_receiver_syllabus">Receiver syllabus:</label>
+      <select name="receiver_syllabus" required="" id="id_receiver_syllabus">
+        <option value="" selected="">---------</option>
+        {% for syllabus in syllabus_list %}
+        <option value="{{ syllabus.career.id }}">{{ syllabus.career.name }} - {{ syllabus.career.institute.name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <input class="primary-button" type="submit" value="Create new analysis">
+  </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit analysis{% endblock title %}
+
+{% block content %}
+<div class="login-form">
+  <form method="POST" class="small-form">
+    <h2>Edit analysis</h2>
+    <p>The following data can be edited.</p>
+    {% csrf_token %}
+    <div>
+      <label for="id_origin_syllabus">Origin syllabus:</label>
+      <select name="origin_syllabus" required="" id="id_origin_syllabus">
+        <option value="" selected="">---------</option>
+        {% for syllabus in syllabus_list %}
+        {% if syllabus == analysis.origin_syllabus %}
+        <option value="{{ syllabus.career.id }}" selected>{{ syllabus.career.name }} -
+          {{ syllabus.career.institute.name }}</option>
+        {% else %}
+        <option value="{{ syllabus.career.id }}">{{ syllabus.career.name }} - {{ syllabus.career.institute.name }}
+        </option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="id_receiver_syllabus">Receiver syllabus:</label>
+      <select name="receiver_syllabus" required="" id="id_receiver_syllabus">
+        <option value="" selected="">---------</option>
+        {% for syllabus in syllabus_list %}
+        {% if syllabus == analysis.receiver_syllabus %}
+        <option value="{{ syllabus.career.id }}" selected>{{ syllabus.career.name }} -
+          {{ syllabus.career.institute.name }}</option>
+        {% else %}
+        <option value="{{ syllabus.career.id }}">{{ syllabus.career.name }} - {{ syllabus.career.institute.name }}
+        </option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <input class="primary-button" type="submit" value="Edit analysis">
+  </form>
+</div>
+{% endblock content %}

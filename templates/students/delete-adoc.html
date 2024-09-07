@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete analysis{% endblock title %}
+
+{% block content %}
+<h2 class="main-title">Delete analysis</h2>
+<p>Are you sure you want to delete the analysis from <b>{{ student.paternal_surname }} {{ student.maternal_surname }} {{ student.first_name }}</b>?</p>
+<br>
+<div class="delete-card">
+  <div>
+    <p>Date:</p>
+    <h4>{{ student.analysis.created_at }}</h4>
+    <p>Student:</p>
+    <h4>{{ student.paternal_surname }} {{ student.maternal_surname }} {{ student.first_name }}</h4>
+    <p>Origin syllabus:</p>
+    <h4>{{ student.analysis.analysis.origin_syllabus }}</h4>
+    <p>Origin institute:</p>
+    <h4>{{ student.analysis.analysis.origin_syllabus.career.institute.name }}</h4>
+    <p>Receiver syllabus:</p>
+    <h4>{{ student.analysis.analysis.receiver_syllabus }}</h4>
+    <p>Receiver institute:</p>
+    <h4>{{ student.analysis.analysis.receiver_syllabus.career.institute.name }}</h4>
+    <p>Academy president:</p>
+    <h4>{{ student.analysis.academy_president }}</h4>
+    <p>Department head:</p>
+    <h4>{{ student.analysis.department_head }}</h4>
+  </div>
+</div>
+<br>
+<form method="POST" class="delete-form">
+  {% csrf_token %}
+  <input class="secondary-button" type="submit" value="Delete analysis">
+</form>
+{% endblock content %}
